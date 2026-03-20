@@ -3,8 +3,7 @@
 	require_once(__DIR__ . "/../partials/header.php");
 	//Importation des dépendances...
 	require_once(__DIR__ . "/../class/CliniqueRepository.class.php");
-?>
-<?php
+
 	//Si la variable action ne contient pas de valeur...
 	if(!isset($_GET["action"]))
 		//On l'initialise à l'action pat défault...
