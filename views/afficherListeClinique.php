@@ -37,7 +37,7 @@
 <br>
 <br>
 <!--Formulaire pour l'ajout de clinques... -->
-<form method="POST" action="CliniqueController.php?action=ajouterClinique">
+<form method="POST" action="cliniqueController.php?action=ajouterClinique">
     <table>
         <tr>
             <td>
