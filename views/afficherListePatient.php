@@ -47,11 +47,12 @@
                     echo "<td>" . $patient->getTelephone() . "</td>";
                     echo "<td>" . $patient->getCourriel() . "</td>";
                     // echo '<td><input value="Modifier" onclick="document.getElementById(\'nomClinique\').value =\'' . $clinique->getNom() . '\'; this.form.action=\'CliniqueController.php\'; this.form.method=\'GET\'; submit();" type="button"></td>';
-                    // echo '<td><input value="Supprimer" type="button" onclick="if (confirm(\'Voulez-vous vraiment supprimer la clinique : ' .  $clinique->getNom() . '\')) { document.getElementById(\'nomClinique\').value = \'' . $clinique->getNom() . '\'; this.form.action =\'CliniqueController.php?action=supprimerClinique\'; this.form.method = \'POST\'; submit();}"></td>';
+                    echo '<td><input value="Supprimer" type="button" onclick="if (confirm(\'Voulez-vous vraiment supprimer le patient suivant : ' .  $patient->getPrenom() . ' '. $patient->getNom()  .'\')) { document.getElementById(\'nomClinique\').value = \'' . $cliniqueSelection . '\'; document.getElementById(\'noDossier\').value = \'' . $patient->getNoDossier() . '\'; this.form.action =\'patientController.php?action=supprimerPatient\'; this.form.method = \'POST\'; submit();}"></td>';
                     echo "</tr>";
                 }
             ?>
             <input type="hidden" id="nomClinique" name="nomClinique">
+            <input type="hidden" id="noDossier" name="noDossier">
         </tr>
     </table>
     </form>

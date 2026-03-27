@@ -57,7 +57,14 @@
 
         public function supprimerPatient($nomClinique, $noDossier)
         {
-            
+            try 
+            {
+                $pdo = new PDO($this->stringConnexion,$this->usager,$this->password);
+				$ins = $pdo->prepare("DELETE FROM patients " . 
+				                           "WHERE noDossier=?
+                                            AND nomClinique=?");
+                $ins->execute(array($noDossier, $nomClinique));
+            } catch (Exception $e) {}
         }
 
         public function obtenirIdPatient($nomClinique, $noDossier)

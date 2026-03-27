@@ -27,6 +27,13 @@
             PatientRepository::getInstance()->ajouterPatient($cliniqueSelection, new PatientDTO($_POST["noDossier"], $_POST["noAssuranceMaladie"], $_POST["nom"], $_POST["prenom"], $_POST["adresse"], $_POST["ville"], $_POST["province"], $_POST["codePostal"], $_POST["telephone"], $_POST["courriel"]));
             header('Location: patientController.php?nomClinique=' . $cliniqueSelection);	
             break;
+
+        case "supprimerPatient":
+            $cliniqueSelection = $_POST["nomClinique"];
+
+            PatientRepository::getInstance()->supprimerPatient($cliniqueSelection, $_POST["noDossier"]);
+            header('Location: patientController.php?nomClinique=' . $cliniqueSelection);	
+            break;
     }
 	include(__DIR__ . "/../partials/footer.php");
 ?>
