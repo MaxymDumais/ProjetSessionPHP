@@ -42,7 +42,12 @@
 
         public function ajouterPatient($nomClinique, $patientDTO)
         {
-            
+            try {
+                $pdo = new PDO($this->stringConnexion,$this->usager,$this->password);
+				$ins = $pdo->prepare("INSERT INTO patients (nomClinique,noDossier,noAssuranceMaladie,nom,prenom,adresse,ville,province,codePostal,telephone,courriel) " . 
+				                     "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+                $ins->execute(array($nomClinique,$patientDTO->getNoDossier(),$patientDTO->getNoAssuranceMaladie(),$patientDTO->getNom(),$patientDTO->getPrenom(),$patientDTO->getAdresse(),$patientDTO->getVille(),$patientDTO->getProvince(),$patientDTO->getCodePostal(),$patientDTO->getTelephone(),$patientDTO->getCourriel()));
+            } catch (Exception $e) {}
         }
 
         public function modifierPatient($nomClinique, $patientDTO)

@@ -14,6 +14,7 @@
     </select>   
 </form>
 <br><br><br>
+    <form method="">
     <table>
         <tr>
             <th>NoDossier</th>
@@ -51,15 +52,102 @@
                 }
             ?>
             <input type="hidden" id="nomClinique" name="nomClinique">
-        </form>
         </tr>
     </table>
+    </form>
     <br>
     <b>Ajouter un patient à la clinique :</b>
     <br><br>
 
     <form method="POST" action="patientController.php?action=ajouterPatient">
         <table>
-            
+            <tr>
+                <td>
+                    <label>NoDossier</label>
+                </td>
+                <td>
+                    <input name="noDossier" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>NoAssuranceMaladie</label>
+                </td>
+                <td>
+                    <input name="noAssuranceMaladie" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Nom</label>
+                </td>
+                <td>
+                    <input name="nom" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Prénom</label>
+                </td>
+                <td>
+                    <input name="prenom" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Adresse</label>
+                </td>
+                <td>
+                    <input name="adresse" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Ville</label>
+                </td>
+                <td>
+                    <input name="ville" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Province</label>
+                </td>
+                <td>
+                    <input name="province" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Code postal</label>
+                </td>
+                <td>
+                    <input name="codePostal" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Téléphone</label>
+                </td>
+                <td>
+                    <input name="telephone" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Courriel</label>
+                </td>
+                <td>
+                    <input name="courriel" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Ajouter" style="width:100px"/>
+                </td>
+            </tr>
         </table>
+        <input type="hidden" name="nomClinique" value="<?= $cliniqueSelection ?>"/>
     </form>
