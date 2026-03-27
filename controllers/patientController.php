@@ -28,10 +28,24 @@
             header('Location: patientController.php?nomClinique=' . $cliniqueSelection);	
             break;
 
+        case "formulaireModifierPatient":
+            $patient = PatientRepository::getInstance()->obtenirPatient($_GET["nomClinique"], $_GET["noDossier"]);
+
+            require_once(__DIR__ . "/../views/formulaireModifierPatient.php");
+            break;
+
+        case "modifierPatient":
+            $cliniqueSelection = $_POST["nomClinique"];
+
+            PatientRepository::getInstance()->modifierPatient($cliniqueSelection, new PatientDTO($_POST["noDossier"], $_POST["noAssuranceMaladie"], $_POST["nom"], $_POST["prenom"], $_POST["adresse"], $_POST["ville"], $_POST["province"], $_POST["codePostal"], $_POST["telephone"], $_POST["courriel"]));
+            header('Location: patientController.php?nomClinique=' .$cliniqueSelection);	
+            break;
+        
+
         case "supprimerPatient":
             $cliniqueSelection = $_POST["nomClinique"];
 
-            PatientRepository::getInstance()->supprimerPatient($cliniqueSelection, $_POST["noDossier"]);
+            PatientRepository::getInstance()->supprimerPatient($_POST["nomClinique"], $_POST["noDossier"]);
             header('Location: patientController.php?nomClinique=' . $cliniqueSelection);	
             break;
     }

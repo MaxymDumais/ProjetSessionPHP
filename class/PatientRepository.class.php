@@ -37,7 +37,20 @@
 
         public function obtenirPatient($nomClinique, $noDossier)
         {
-            
+            $patient = null;
+            try {
+                $pdo = new PDO($this->stringConnexion,$this->usager,$this->password);
+				$ins = $pdo->prepare("SELECT * " . 
+				                       "FROM patients " . 
+									  "WHERE noDossier=?
+                                       AND nomClinique=?");
+				$ins->setFetchMode(PDO::FETCH_ASSOC);
+				$ins->execute(array($noDossier, $nomClinique));
+                $resultat = $ins->fetch();
+                $patient = new PatientDTO($resultat["noDossier"], $resultat["noAssuranceMaladie"], $resultat["nom"], $resultat["prenom"], $resultat["adresse"], $resultat["ville"], $resultat["province"], $resultat["codePostal"], $resultat["telephone"], $resultat["courriel"]);
+            } catch (Exception $e) {}
+
+            return $patient;
         }
 
         public function ajouterPatient($nomClinique, $patientDTO)
@@ -53,6 +66,14 @@
         public function modifierPatient($nomClinique, $patientDTO)
         {
             
+            try {
+                $pdo = new PDO($this->stringConnexion,$this->usager,$this->password);
+                $ins = $pdo->prepare("UPDATE patients " . 
+				                        "SET noAssuranceMaladie=?,nom=?,prenom=?,adresse=?,ville=?,province=?,codePostal=?,telephone=?,courriel=? " . 
+									    "WHERE nomClinique=?
+                                         AND noDossier=?");
+                $ins->execute(array($patientDTO->getNoAssuranceMaladie(), $patientDTO->getNom(), $patientDTO->getPrenom(), $patientDTO->getAdresse(), $patientDTO->getVille(), $patientDTO->getProvince(), $patientDTO->getCodePostal(), $patientDTO->getTelephone(), $patientDTO->getCourriel(), $nomClinique, $patientDTO->getNoDossier()));
+            } catch (Exception $e) {}
         }
 
         public function supprimerPatient($nomClinique, $noDossier)
@@ -69,7 +90,15 @@
 
         public function obtenirIdPatient($nomClinique, $noDossier)
         {
-            
+            $pdo = new PDO($this->stringConnexion,$this->usager,$this->password);
+			$ins = $pdo->prepare("SELECT id FROM patients " . 
+								  "WHERE noDossier=?
+                                   AND nomClinique=?");
+            $ins->setFetchMode(PDO::FETCH_ASSOC);
+            $ins->execute(array($noDossier, $nomClinique));
+				$resultat = $ins->fetch();
+				$idPatient = $resultat["id"];
+				return $idPatient;
         }
     }
 ?>
